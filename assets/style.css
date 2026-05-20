@@ -1,0 +1,268 @@
+/* 
+    VaultIQ Premium Fintech UI Style
+    Advanced Glassmorphism, Animated Mesh Gradients, and Luxury Typography
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg-primary: #050505;
+    --bg-secondary: #0a0b0d;
+    --accent-blue: #007aff;
+    --accent-indigo: #5856d6;
+    --accent-green: #34c759;
+    --accent-red: #ff3b30;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-hover: rgba(255, 255, 255, 0.06);
+    --text-main: #ffffff;
+    --text-dim: #94949b;
+    --card-radius: 28px;
+    --glow-blue: 0 0 30px rgba(0, 122, 255, 0.2);
+    --input-height: 52px;
+}
+
+html, body, [data-testid="stAppViewContainer"] {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* --- Animated Mesh Gradient Background --- */
+.hero-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -3; /* Further back to allow particles at -2 */
+    background: 
+        radial-gradient(circle at 0% 0%, rgba(0, 122, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(88, 86, 214, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(52, 199, 89, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(255, 59, 48, 0.05) 0%, transparent 40%),
+        var(--bg-primary);
+    animation: backgroundPulse 15s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+    0% { filter: hue-rotate(0deg) brightness(1); }
+    100% { filter: hue-rotate(10deg) brightness(1.2); }
+}
+
+/* --- Sidebar Styling (Inside App) --- */
+[data-testid="stSidebar"] {
+    background: rgba(10, 11, 13, 0.7) !important;
+    backdrop-filter: blur(40px) !important;
+    border-right: 1px solid var(--glass-border) !important;
+    padding: 2rem 1.2rem;
+}
+
+.sidebar-logo {
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.05em !important;
+    margin-bottom: 0.5rem !important;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar-user {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* --- Hero Section (Landing Page) --- */
+.hero-section {
+    position: relative; /* Ensure relative positioning for glow */
+    text-align: center;
+    padding: 6rem 0 3rem 0;
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    height: 400px;
+    background: radial-gradient(
+        circle, 
+        rgba(0, 122, 255, 0.4) 0%, 
+        rgba(88, 86, 214, 0.25) 35%, 
+        rgba(0, 212, 255, 0.15) 65%, 
+        transparent 90%
+    );
+    filter: blur(80px); /* Slightly sharper blur for more intensity */
+    z-index: -1;
+    border-radius: 50%;
+    animation: glowPulse 10s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes glowPulse {
+    0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.95; }
+    100% { transform: translate(-50%, -50%) scale(1.25); opacity: 0.7; }
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(0, 122, 255, 0.1);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+    border-radius: 100px;
+    color: var(--accent-blue);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+}
+
+.hero-logo {
+    font-size: 6.5rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.06em !important;
+    margin-bottom: 0.5rem !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.iq-accent {
+    color: #00d4ff !important; /* Bright blue accent */
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+.hero-tagline {
+    font-size: 1.35rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto !important;
+    font-weight: 400;
+}
+
+/* --- Auth Card (Glassmorphism) --- */
+.auth-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--card-radius) !important;
+    padding: 35px !important;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5) !important;
+}
+
+.info-card {
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(0, 122, 255, 0.05);
+    border: 1px solid rgba(0, 122, 255, 0.1);
+    border-radius: 18px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+/* --- Global Inputs & Tabs --- */
+.stTabs [data-baseweb="tab-list"] { gap: 10px; }
+.stTabs [data-baseweb="tab"] {
+    height: 50px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    color: var(--text-dim);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    flex-grow: 1;
+}
+
+.stTabs [aria-selected="true"] {
+    background: var(--accent-blue) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+}
+
+.stTextInput > div > div, .stNumberInput > div > div, .stSelectbox > div > div {
+    min-height: var(--input-height) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 16px !important;
+}
+
+.stTextInput input, .stNumberInput input {
+    color: #fff !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+}
+
+.stButton > button {
+    height: 54px !important;
+    border-radius: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.stButton > button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.2);
+    box-shadow: 0 10px 30px rgba(0, 122, 255, 0.4) !important;
+}
+
+/* --- Premium Footer --- */
+.premium-footer {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    opacity: 0.4;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.3s;
+}
+
+/* Glass Card Global Styling */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--card-radius);
+    padding: 28px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-bottom: 24px;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--glass-hover);
+}
+
+/* Metric Display Optimization */
+[data-testid="stMetricValue"] { font-size: 2.2rem !important; font-weight: 800 !important; letter-spacing: -0.04em; }
+[data-testid="stMetricLabel"] { font-size: 0.8rem !important; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim) !important; }
+
+/* Scrollbar Style */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
